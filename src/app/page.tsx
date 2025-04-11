@@ -49,7 +49,7 @@ export default function Home() {
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-200" />
             <Link 
               href="/game"
-              className="relative block w-full py-4 rounded-lg text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:scale-[1.02] active:scale-[0.98] transition-all text-center"
+              className="inline-block px-8 py-4 text-xl font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all text-center"
             >
               Start Game
             </Link>
