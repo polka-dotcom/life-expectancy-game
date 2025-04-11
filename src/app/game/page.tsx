@@ -24,7 +24,7 @@ export default function GamePage() {
       setCurrentCountry(initialCountry);
       setNextCountry(getRandomCountry());
     }
-  }, []);
+  }, [currentCountry, getRandomCountry]);
 
   const handleGuess = async () => {
     if (!currentCountry || isTransitioning) return;

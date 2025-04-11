@@ -16,7 +16,7 @@ Players are presented with a country name and must guess the average life expect
 
 ## 🚀 Live Demo
 
-Try the game here: [Life Expectancy Game](https://your-username.github.io/life-expectancy-game)
+Try the game here: [Life Expectancy Game](https://polka-dotcom.github.io/life-expectancy-game)
 
 ## 🛠️ Technologies Used
 
