@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌍 Life Expectancy Game
 
-## Getting Started
+A fun and educational game that tests your knowledge about global health and life expectancy across different countries. Challenge yourself to guess how long people live in various nations around the world!
 
-First, run the development server:
+![Life Expectancy Game Screenshot](public/game-screenshot.png)
 
+## 🎮 About the Game
+
+Players are presented with a country name and must guess the average life expectancy in that country. The game features:
+
+- 🎯 Interactive slider for making guesses
+- ✨ Beautiful animations and transitions
+- 📊 Score tracking and feedback
+- 🌟 Special effects for accurate guesses
+- 🔄 Multiple rounds with different countries
+
+## 🚀 Live Demo
+
+Try the game here: [Life Expectancy Game](https://your-username.github.io/life-expectancy-game)
+
+## 🛠️ Technologies Used
+
+- **Framework**: [Next.js 15](https://nextjs.org/) with App Router
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Build Tool**: [Turbopack](https://turbo.build/pack)
+- **Deployment**: GitHub Pages
+
+## 🏃‍♂️ Running Locally
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/life-expectancy-game.git
+cd life-expectancy-game
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Start the development server:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Learn More
+## 🎯 Game Features
 
-To learn more about Next.js, take a look at the following resources:
+- **Intuitive Interface**: Simple and clean design that focuses on the gameplay
+- **Real-time Feedback**: Immediate visual feedback on your guesses
+- **Progressive Difficulty**: Countries are randomly selected to keep the game challenging
+- **Performance Tracking**: Track your accuracy across multiple rounds
+- **Responsive Design**: Works great on both desktop and mobile devices
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 Design Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Smooth animations and transitions
+- Modern glassmorphism UI elements
+- Gradient backgrounds and accents
+- Interactive hover effects
+- Responsive and accessible design
 
-## Deploy on Vercel
+## 📝 To-Do List
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [ ] Add more countries and regions
+- [ ] Implement a global leaderboard
+- [ ] Add difficulty levels
+- [ ] Include country facts and statistics
+- [ ] Add social sharing features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to:
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Life expectancy data sourced from [World Bank Open Data](https://data.worldbank.org/)
+- Inspired by educational games that make learning fun and interactive
+- Special thanks to the Next.js and Framer Motion communities
