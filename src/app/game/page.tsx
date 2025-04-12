@@ -28,141 +28,116 @@ export default function GamePage() {
 
   const handleGuess = async () => {
     if (!currentCountry || isTransitioning) return;
-
+    
     setIsTransitioning(true);
     setShowResult(true);
     
-    const error = calculateScore(currentCountry.lifeExpectancy, guess);
+    const difference = Math.abs(currentCountry.lifeExpectancy - guess);
+    const score = calculateScore(difference);
     
     setGameState(prev => ({
       ...prev,
+      score: prev.score + score,
       currentRound: prev.currentRound + 1,
-      score: prev.score + error,
       guesses: [...prev.guesses, {
         country: currentCountry.name,
         actual: currentCountry.lifeExpectancy,
         guess,
-        difference: error
-      }]
+        difference,
+      }],
     }));
 
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    
+    setShowResult(false);
+    setIsTransitioning(true);
+    
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
     if (gameState.currentRound + 1 >= gameState.totalRounds) {
       window.location.href = '/results';
-      return;
-    }
-  };
-
-  const handleResultAnimationComplete = () => {
-    setTimeout(() => {
-      setShowResult(false);
-      if (nextCountry) {
-        setCurrentCountry(nextCountry);
-        setNextCountry(getRandomCountry());
-        setGuess(70);
-      }
+    } else {
+      setCurrentCountry(nextCountry);
+      setNextCountry(getRandomCountry());
+      setGuess(70);
       setIsTransitioning(false);
-    }, 3000);
+    }
   };
 
   if (!currentCountry) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="text-xl text-blue-600 font-semibold"
-        >
-          Loading...
-        </motion.div>
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+        <div className="text-white text-xl">Loading...</div>
       </div>
     );
   }
 
   return (
-    <>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 p-8">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
-        
+    <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      <div className="w-full max-w-2xl">
         <motion.div
+          className="space-y-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative flex flex-col items-center justify-center min-h-screen max-w-4xl mx-auto"
         >
-          <div className="absolute -top-20 -left-20 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" />
-          <div className="absolute -bottom-8 -right-20 w-64 h-64 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000" />
-          
-          <div className="relative w-full bg-white/80 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-white/20">
-            <h2 className="text-3xl font-bold mb-8 text-center">
-              <span className="block text-2xl text-gray-600 mb-2">Guess the life expectancy in:</span>
-              <AnimatePresence mode="wait">
+          <div className="text-center space-y-4">
+            <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+              Guess the Life Expectancy
+            </h1>
+            <p className="text-xl text-gray-300">
+              Round {gameState.currentRound + 1} of {gameState.totalRounds}
+            </p>
+            <div className="text-2xl font-semibold text-white">
+              {currentCountry.name}
+            </div>
+          </div>
+
+          <div className="relative">
+            <AnimatePresence mode="wait">
+              {showResult ? (
+                <GuessResult
+                  key="result"
+                  actual={currentCountry.lifeExpectancy}
+                  guess={guess}
+                />
+              ) : (
                 <motion.div
-                  key={currentCountry.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5 }}
-                  className="text-4xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+                  key="slider"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="space-y-8"
                 >
-                  {currentCountry.name}
+                  <Slider 
+                    value={guess} 
+                    onChange={setGuess}
+                    min={40}
+                    max={90}
+                  />
+                  
+                  <button
+                    onClick={handleGuess}
+                    disabled={isTransitioning}
+                    className={`relative w-full py-4 rounded-lg text-lg font-semibold transition-all text-center ${
+                      isTransitioning
+                        ? 'bg-gray-400 cursor-not-allowed'
+                        : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:scale-[1.02] active:scale-[0.98]'
+                    }`}
+                  >
+                    Submit Guess
+                  </button>
                 </motion.div>
-              </AnimatePresence>
-            </h2>
+              )}
+            </AnimatePresence>
+          </div>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="mb-8"
-            >
-              <Slider
-                value={guess}
-                onChange={setGuess}
-                min={0}
-                max={90}
-              />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="relative group"
-            >
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-200" />
-              <button
-                onClick={handleGuess}
-                disabled={isTransitioning}
-                className={`relative w-full py-4 rounded-lg text-lg font-semibold transition-all text-center ${
-                  isTransitioning
-                    ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:scale-[1.02] active:scale-[0.98]'
-                }`}
-              >
-                Submit Guess
-              </button>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="mt-8 text-center"
-            >
-              <span className="inline-block px-4 py-2 rounded-full bg-blue-100 text-blue-800 font-semibold">
-                Round {gameState.currentRound + 1} of {gameState.totalRounds}
-              </span>
-            </motion.div>
+          <div className="text-center">
+            <p className="text-xl text-gray-300">
+              Score: {gameState.score}
+            </p>
           </div>
         </motion.div>
       </div>
-
-      <GuessResult
-        actual={currentCountry.lifeExpectancy}
-        guess={guess}
-        isVisible={showResult}
-        onAnimationComplete={handleResultAnimationComplete}
-      />
-    </>
+    </main>
   );
 }
