@@ -42,7 +42,7 @@ Final Page:
 
 ## 🚀 Live Demo
 
-Try the game here: [Life Expectancy Game](https://polka-dotcom.github.io/life-expectancy-game)
+Try the game here: [Life Expectancy Game](https://life-expectancy-game.vercel.app/)
 
 ## 🛠️ Technologies Used
 
