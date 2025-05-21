@@ -20,6 +20,23 @@ Players are presented with a country name and must guess the average life expect
 
 
 Final Page:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <img width="359" alt="Screenshot 2025-05-21 204155" src="https://github.com/user-attachments/assets/610c67e7-1c51-472a-af7c-2851360bd99d" />
 
 
