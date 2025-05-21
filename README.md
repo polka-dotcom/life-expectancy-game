@@ -2,8 +2,8 @@
 
 A fun and educational game that tests your knowledge about global health and life expectancy across different countries. Challenge yourself to guess how long people live in various nations around the world!
 
-![Life Expectancy Game Screenshot](<img width="530" alt="Screenshot 2025-05-21 203849" src="https://github.com/user-attachments/assets/59d15390-2cb9-430d-9aac-b56b8d870ebd" />
-)
+<img width="530" alt="Screenshot 2025-05-21 203849" src="https://github.com/user-attachments/assets/af9586dc-458e-404b-b189-4d0e9b82932f" />
+
 
 ## 🎮 About the Game
 
